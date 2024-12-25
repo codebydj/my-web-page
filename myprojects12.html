@@ -5,30 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MY PROJECTs</title>
     <link rel="stylesheet" href="myprojects12.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="aboutContact.js"></script>
+
+    <!-- style sheet for loader -->
+    <style>
+      /* Container for the loader */
+      .container {
+        position: fixed; /* Fix the loader to the screen */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white; /* Solid white background */
+        z-index: 9999; /* Ensure loader is on top */
+        display: none; /* Start with the loader hidden */
+      }
+
+      /* Make the rest of the page content non-interactive */
+      body.loading {
+        overflow: hidden; /* Prevent scrolling */
+      }
+
+      .loader {
+        font-size: 2.2em;
+        font-weight: bolder;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+      .loader > * {
+        color: black;
+      }
+      .loader span {
+        display: inline-flex;
+      }
+      .loader span:nth-child(2) {
+        letter-spacing: -1em;
+        overflow: hidden;
+        animation: reveal 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite
+          alternate;
+      }
+      @keyframes reveal {
+        0%,
+        100% {
+          opacity: 0.5;
+          letter-spacing: -1em;
+        }
+        50% {
+          opacity: 1;
+          letter-spacing: 0em;
+        }
+      }
+    </style>
   </head>
 
   <body>
+    <!-- loader -->
+    <div class="container" id="loaderContainer">
+      <!-- for loader -->
+      <div class="loader">
+        <span>&lt;</span>
+        <span>LOADING</span>
+        <span>/&gt;</span>
+      </div>
+    </div>
+
+    <!-- nav bar titles -->
     <span>
       <nav>
         <a href="/my-web-page/index.html" class="navbar">
-          <i class="fi fi-rr-home" id="homeBtn"> home </i>
+          <i class="fi fi-rr-home" id="homeBtn"> <span>home</span> </i>
         </a>
         <a href="/myprojects12.html" class="navbar">
-          <i class="fi fi-rr-edit"> MY projects </i>
+          <i class="fi fi-rr-edit"> <span>MY projects</span> </i>
         </a>
         <a href="my-web-page/index.html?section=about" class="navbar">
-          <i class="fi fi-rr-user" id="aboutBtn"> about me</i>
+          <i class="fi fi-rr-user" id="aboutBtn"> <span>about me</span> </i>
         </a>
         <a href="my-web-page/index.html?section=contact" class="navbar">
-          <i class="fi fi-rr-envelope" id="contactBtn"> Contact </i>
+          <i class="fi fi-rr-envelope" id="contactBtn">
+            <span>Contact</span>
+          </i>
         </a>
       </nav>
     </span>
-    <div class="HeaderParent" id="myProjectTitle"></div>
-    <h1 class="header">MY PROJECT'S</h1>
 
+    <!-- project heading -->
+    <div class="HeaderParent" id="myProjectTitle">
+      <h1 class="header">MY PROJECT'S</h1>
+    </div>
     <div class="myProjects">
+      <!-- Search functionality -->
+      <div class="search-container">
+        <i style="font-size: 24px" class="fa">&#xf002;</i>
+        <input
+          type="text"
+          id="projectSearch"
+          placeholder="Search projects..." />
+        <i style="font-size: 24px" class="fa fa-close" id="searchRemoveBtn"></i>
+      </div>
+
       <div class="counts">
         <a href="#NewProjects" class="CodeUsedLinks">
           <div class="ProjectInfo" style="color: blue">latest projects</div>
@@ -43,17 +123,24 @@
             html , css & js projects = 16
           </div>
         </a>
-        <div class="ProjectInfo">total projects = 34</div>
-        <div class="ProjectInfo">last updated : 02-03-2024</div>
         <a href="#RealTimeProjects" class="CodeUsedLinks">
           <div class="ProjectInfo" id="CodeUsedLinks1" style="color: blue">
             Real Time Projects = 05
           </div>
         </a>
+        <div class="ProjectInfo">total projects = 34</div>
+        <div class="ProjectInfo lastUpdated">
+          <abbr
+            title="previous last updated : 02-03-2024"
+            style="text-decoration: none"
+            >last updated : 25-12-2024</abbr
+          >
+        </div>
       </div>
 
       <a href="#myProjectTitle" class="top" id="top"> Top &#8593; </a>
 
+      <!-- html css -->
       <div class="CodeUsed" id="codeUsedTitle1">
         <u>html & css projects</u>
       </div>
@@ -563,7 +650,7 @@
           </span>
         </span>
       </div>
-
+      <!-- html css & js -->
       <div class="CodeUsed" id="codeUsedTitle2">
         <u> html , css & js projects</u>
       </div>
@@ -1058,8 +1145,8 @@
           </span>
         </span>
       </div>
-
-      <div class="CodeUsed" id="codeUsedTitle2">
+      <!-- real time projects -->
+      <div class="CodeUsed" id="codeUsedTitle3">
         <u> Real Time Projects</u>
       </div>
 
@@ -1213,24 +1300,44 @@
     </div>
 
     <footer>
-      <p class="AbMe" id="AbMe">
-        About Me: Still I'm Not Decided 🤔.i wil Update this footer soon💕.
-      </p>
-      <p>
-        Social Media:
-        <a href="#">
-          <i class="fi fi-brands-twitter"></i>
-        </a>
-        <a href="#">
-          <i class="fi fi-brands-linkedin"></i>
-        </a>
-        <a href="#">
-          <i class="fi fi-brands-telegram"></i>
-        </a>
-        <a href="#">
-          <i class="fi fi-brands-instagram"> </i>
-        </a>
-      </p>
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li>
+              Email:
+              <a href="mailto:jayad6889@Gmail.com">jayad6889@Gmail.com</a>
+            </li>
+            <li>Phone: <a href="tel:+917569099290">7569099290</a></li>
+            <li>
+              Location: Dharmavaram, Sri sathya sai (dist), Andhra Pradhesh ,
+              India
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fi fi-brands-github"></i></a>
+            <a href="#"><i class="fi fi-brands-linkedin"></i></a>
+            <a href="#"><i class="fi fi-brands-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 DJ. All rights reserved.</p>
+      </div>
     </footer>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -1267,5 +1374,31 @@
         });
       });
     </script>
+
+    <!-- js for loader -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Show loader when page is loading
+        showLoader();
+
+        // Simulate page loading completion (or replace this with your actual loading logic)
+        setTimeout(function () {
+          hideLoader(); // Hide loader after the simulated loading time (3 seconds)
+        }, 1000); // Simulating 3 seconds of loading delay
+      });
+
+      // Show the loader
+      function showLoader() {
+        document.body.classList.add("loading"); // Add the 'loading' class to the body
+        document.getElementById("loaderContainer").style.display = "flex"; // Show the loader
+      }
+
+      // Hide the loader
+      function hideLoader() {
+        document.body.classList.remove("loading"); // Remove the 'loading' class from the body
+        document.getElementById("loaderContainer").style.display = "none"; // Hide the loader
+      }
+    </script>
+    <script src="myprojects12.js"></script>
   </body>
 </html>
