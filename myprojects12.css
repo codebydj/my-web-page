@@ -151,7 +151,10 @@ nav {
   transition: 0.5s ease;
   transform: scale(1.06);
 }
-
+.ProjectInfo > span::before {
+  content: ": ";
+  text-decoration: none;
+}
 .CodeUsedLinks {
   text-decoration: wavy;
 }
@@ -172,6 +175,7 @@ nav {
 
 .top:hover::before {
   content: "Back To";
+  transition: all 1.5s ease;
   padding: 10px;
 }
 
@@ -239,6 +243,7 @@ nav {
 }
 
 img {
+  background-color: rgba(199, 199, 199, 0.691);
   width: 100%;
   border: 4px inset black;
 }
@@ -354,15 +359,12 @@ footer {
   border-top: 1px solid #34495e;
 }
 
-@media (min-width:400px) and (max-width: 768px) {
+@media (min-width: 400px) and (max-width: 768px) {
   * {
     font-size: 12px;
   }
   .CodeUsed > u {
     font-size: 1.39rem;
-  }
-  .ProjectInfo {
-    height: ;
   }
   .projectTitle {
     width: 100px;
