@@ -129,6 +129,7 @@ nav {
   background-position: center;
   border-radius: 30px;
   padding: 20px;
+  background-attachment: fixed;
 }
 
 .details {
@@ -191,6 +192,7 @@ nav {
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 40px;
+  background-attachment: fixed;
 }
 
 .myProjects {
