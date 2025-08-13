@@ -19,15 +19,21 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
 }
 .section1 {
   border-radius: 20px;
   background-color: #c6f678;
 }
+.headerLogo{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .myLogo {
+  width: 30%;
   border-radius: 20px;
-  border: 2px solid #000;
 }
 .LastUpdatedDate {
   display: flex;
@@ -246,7 +252,6 @@ nav {
 .realTimeImg {
   width: 190px;
   padding: 10px;
-  border-radius: 60px;
 }
 
 .description {
