@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FiGithub, FiDownload, FiArrowRight, FiLinkedin, FiMail } from "react-icons/fi";
+import {
+  FiGithub,
+  FiDownload,
+  FiArrowRight,
+  FiLinkedin,
+  FiMail,
+} from "react-icons/fi";
 
 const Hero = () => {
   const [displayedText, setDisplayedText] = useState("");
@@ -26,6 +32,36 @@ const Hero = () => {
         delayChildren: 0.3,
       },
     },
+  };
+
+  const getDateString = () => {
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  };
+
+  const downloadResume = async (e) => {
+    e.preventDefault();
+    try {
+      const pdfPath = encodeURI("/Pamula Dhanunjaya - Resume.pdf");
+      const res = await fetch(pdfPath);
+      if (!res.ok) throw new Error("Network response was not ok");
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `DJ_resume_${getDateString()}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Resume download failed:", err);
+      // fallback: open the static PDF
+      window.open("/Pamula Dhanunjaya - Resume.pdf", "_blank");
+    }
   };
 
   const itemVariants = {
@@ -97,7 +133,8 @@ const Hero = () => {
           <motion.p
             variants={itemVariants}
             className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Building modern student-focused web applications using React, Node.js and MongoDB.
+            Building modern student-focused web applications using React,
+            Node.js and MongoDB.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -113,16 +150,14 @@ const Hero = () => {
               <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
             </motion.a>
 
-            <motion.a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.button
+              onClick={downloadResume}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="btn-secondary flex items-center justify-center gap-2 min-w-[200px]">
               Download Resume
               <FiDownload />
-            </motion.a>
+            </motion.button>
 
             <motion.a
               href="#contact"
@@ -169,7 +204,9 @@ const Hero = () => {
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}>
         <div className="flex flex-col items-start gap-2">
-          <span className="text-sm text-gray-400 -ml-10">Scroll to explore</span>
+          <span className="text-sm text-gray-400 -ml-10">
+            Scroll to explore
+          </span>
           <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
             <motion.div
               className="w-1 h-2 bg-gray-400 rounded-full mt-2"
